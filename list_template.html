@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Valve Server List</title>
+    <meta charset="utf-8"/>
+    <style>
+      body {
+        width: 1000px;
+        margin: 20px auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 50px;
+        font-size: 14px;
+      }
+      td, th {
+        border: 1px solid #aaaaaa;
+      }
+      a {
+        color: #337ab7;
+      }
+      .ip {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Valve Server List</h1>
+
+    {% for server in servers %}
+    <h2>{{ server.name }} - {{ server.ip }}</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th>Port</th>
+        <th>Name</th>
+      </tr>
+      {% for service in server.services %}
+      <tr>
+        <td class="ip"><a href="steam://connect/{{ server.ip }}:{{ service.port }}">{{ service.port }}</a></td>
+        <td class="name">{{ service.name }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endfor %}
+  </body>
+</html>
