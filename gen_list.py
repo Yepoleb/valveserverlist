@@ -12,16 +12,10 @@ ids = json.load(open("server_ids.json"))
 server_list = []
 for id_name, ip in sorted(ids.items()):
     services = servers[ip]
-    services_list = []
-    for port, name in sorted(services.items()):
-        services_list.append({
-            "port": port,
-            "name": name
-        })
     server_list.append({
         "ip": ip,
+        "gameservers": len(services),
         "name": id_name,
-        "services": services_list
     })
 
 template = j2_env.get_template("list_template.html")

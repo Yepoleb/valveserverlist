@@ -1,6 +1,6 @@
 # Valve Server List
 
-List of European Valve TF2 servers.
+List of Valve TF2 servers.
 
 ## License
 

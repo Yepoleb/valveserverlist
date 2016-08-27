@@ -12,36 +12,43 @@
         border-collapse: collapse;
         width: 100%;
         margin-bottom: 50px;
-        font-size: 14px;
+        font-size: 16px;
       }
       td, th {
         border: 1px solid #aaaaaa;
-      }
-      a {
-        color: #337ab7;
+        padding: 1px 5px;
       }
       .ip {
         text-align: center;
+        padding: 1px 20px;
+      }
+      .gameservers {
+        text-align: right;
+      }
+      .name {
+        width: 100%;
       }
     </style>
   </head>
   <body>
-    <h1>Valve Server List</h1>
-
-    {% for server in servers %}
-    <h2>{{ server.name }} - {{ server.ip }}</h2>
-    <table class="table table-bordered">
+    <h1>TF2 Valve Server List</h1>
+    <p>
+      Port ranges start at 27015 and go up to 27062 or 27074, depending on the
+      number of gameservers running on the IP address.
+    </p>
+    <table>
       <tr>
-        <th>Port</th>
-        <th>Name</th>
+        <th>IP</th>
+        <th>Gameservers</th>
+        <th>Identifier</th>
       </tr>
-      {% for service in server.services %}
+      {% for server in servers %}
       <tr>
-        <td class="ip"><a href="steam://connect/{{ server.ip }}:{{ service.port }}">{{ service.port }}</a></td>
-        <td class="name">{{ service.name }}</td>
+        <td class="ip">{{ server.ip }}</td>
+        <td class="gameservers">{{ server.gameservers }}</td>
+        <td class="name">{{ server.name }}</td>
       </tr>
       {% endfor %}
     </table>
-    {% endfor %}
   </body>
 </html>
